@@ -1,0 +1,8 @@
+<script src="js/socket.io.js"></script>
+<script>
+  let socket = io('http://138.197.217.228:3000/');
+
+  socket.on('connected', ()=>{
+    alert('connected');
+  })
+</script>

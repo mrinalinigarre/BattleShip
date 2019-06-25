@@ -1,0 +1,34 @@
+<div class="container login">
+
+  <div class="row justify-content-center">
+
+    <div class="form col-6"> 
+
+      {{#if message}}
+        <div class="alert alert-danger text-center" role="alert">Login Failed</div>
+      {{/if}}
+
+      <h1 class="text-center mb-3">Login</h1>
+
+      <form action="/login" method="post">
+
+        <div class="form-group">
+          <input type="text" id="username" name="username" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Username" required autofocus>
+        </div>
+
+        <div class="form-group">
+          <input type="password" id="loginPassword" name="password" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Password" required>
+        </div>
+      
+        <div class="form-inline justify-content-end">
+          <a class="btn btn-default" href="/">Go Back</a>
+          <a class="btn btn-default" href="/register">Register</a>
+          <button type="submit" class="btn">Login</button>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+
+</div>

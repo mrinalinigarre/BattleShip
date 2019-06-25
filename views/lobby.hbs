@@ -1,0 +1,235 @@
+<div class="container">
+
+  <div class="lobby-header row no-gutters">
+
+    <span class="col-2" style="color:#fce300; font-size:36px;">Lobby</span>
+    <span class="col"></span>
+    <button id="createRoomButton" class="col-2 btn btn-primary">Create Room</button>
+
+  </div>
+
+  <div class="row no-gutters">
+
+    <div class=" col-9 no-gutters" id="room-list-container">
+      <ul id="room-list">
+        {{#each lobby as | room |}}
+            <li class="room-item">
+              <div class="room-num-container">Room <span class="roomNum">{{room.id}}</span></div>
+                <div class="playerLabel"> Player 1</div><span id="player1Name" class="playerName">{{#if room.player1}} {{room.player1}} </span> {{else}}</span> 
+                  <button data-room-id="{{room.id}}" class="btn btn-primary player1Join">Join</button> {{/if}}
+  
+                <div class="playerLabel"> Player 2 </div><span id="player2Name" class="playerName">{{#if room.player2}} {{room.player2}}</span> {{else}}</span> 
+                  <button data-room-id="{{room.id}}" class="btn btn-primary player2Join">Join</button>{{/if}}
+            </li>
+        {{/each}}
+      </ul>
+    </div>
+
+      <div id="user-list" class="col-3 user-list-container">
+      </div>
+
+  </div>
+
+  <div class="row no-gutters">
+    <div id="chat-box" class="col chat-container">
+    </div>
+
+    <div class="input-group">
+      <input type="text" id="message" class="form-control" placeholder="Get Rekt">
+      <span class="input-group-btn" id="message-send"><button id="message-send" class="btn btn-chat-send" type="submit">Send</button></span>
+     </div>
+
+  </div>
+
+
+</div>
+<script src="js/socket.io.js"></script>
+<script>
+
+  /* LOBBY CHAT */
+  let socket = io('/')
+  let messageSend = document.getElementById('message-send');
+  let username = '{{session.username}}';
+
+  //Load Users onto list
+  socket.emit('lobby-connect', {
+
+    username:username,
+
+  })
+
+  socket.on('load-users', (data)=>{
+    if(data.users){
+      let userList = document.getElementById('user-list');
+      userList.innerHTML = '';
+      data.users.forEach((user)=>{
+
+        let username = document.createElement('div');
+        username.innerHTML = user.username;
+
+        userList.append(username);
+      })
+    }
+  })
+
+  socket.on('player1-join', (data)=>{
+    let roomId = data.roomId;
+    let player1Name = data.player1name;
+    let rooms = document.getElementsByClassName('room-item');
+
+    [].forEach.call(rooms, (room)=>{
+      let pageRoomNum = room.getElementsByClassName('roomNum');      
+      pageRoomNum = parseInt(pageRoomNum[0].innerHTML);
+
+      if(pageRoomNum === roomId){
+        let player1NameSpan = room.querySelector('#player1Name');
+        player1NameSpan.innerHTML = " " + player1Name;
+
+        let player1Button = room.getElementsByClassName('player1Join');
+        player1Button = player1Button[0];
+        room.removeChild(player1Button);
+      }
+    })
+    
+  })
+
+  socket.on('player2-join', (data)=>{
+    let roomId = data.roomId;
+    let player2Name = data.player2name;
+    let rooms = document.getElementsByClassName('room-item');
+
+    [].forEach.call(rooms, (room)=>{
+      let pageRoomNum = room.getElementsByClassName('roomNum');
+      pageRoomNum = parseInt(pageRoomNum[0].innerHTML);
+
+      if(pageRoomNum === roomId){
+        let player2NameSpan = room.querySelector('#player2Name');
+        player2NameSpan.innerHTML = " " + player2Name;
+
+        let player2Button = room.getElementsByClassName('player2Join');
+        player2Button = player2Button[0];
+        room.removeChild(player2Button);
+      }
+    })
+
+  })
+
+  //Send message on click Send
+  messageSend.addEventListener('click', (e)=>{
+    e.preventDefault();
+
+    let message = document.getElementById('message').value;
+
+    socket.emit('message-send', {
+      username: username,
+      message: message,
+    })
+
+    document.getElementById('message').value = '';
+  })
+
+  //Put message on chat box
+  socket.on('message-sent', (data)=>{
+    let chatBox = document.getElementById('chat-box');
+
+    let chatName = document.createElement('span');
+    chatName.setAttribute('class', 'chat-username');
+    chatName.innerHTML = data.username;
+
+    let message = document.createElement('div');
+    message.setAttribute('class','chat-message');
+    message.appendChild(chatName);
+
+    message.innerHTML += ": " + data.message;
+
+    chatBox.appendChild(message);
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+  })
+
+  /* LOBBY CHAT END */
+
+  /* CREATE ROOMS */
+  let createRoomButton = document.getElementById('createRoomButton');
+
+  createRoomButton.addEventListener('click', ()=>{
+    fetch('lobby/createRoom', {
+      method:'post',
+      credentials: 'include',
+    }).then( ()=>{
+      socket.emit('create-room');
+    })
+
+  })
+
+  socket.on('created-room', (room)=>{
+    let roomListContainer = document.getElementById('room-list-container');
+    let roomList = document.getElementById('room-list');
+    let roomItem = document.createElement('li');
+    roomItem.setAttribute('class', 'room-item');
+    roomItem.style.display = 'none';
+
+    let roomId = room.id;
+    roomItem.innerHTML = `<div class="room-num-container">Room <span class="roomNum">${roomId}</span></div> <div class="playerLabel">Player 1</div><span id="player1Name" class="playerName"></span>  <button data-room-id="${roomId}"class="btn btn-primary player1Join">Join</button> <div class="playerLabel"> Player 2</div><span id="player2Name" class="playerName"></span> <button data-room-id="${roomId}" class="btn btn-primary player2Join">Join</button>`;
+    
+    roomList.appendChild(roomItem);
+
+    $(function(){
+      let $this = $(roomItem);
+
+      $this.slideDown(200);
+    })
+
+    setJoinButtons();
+
+    roomListContainer.scrollTop = roomListContainer.scrollHeight;
+  })
+  
+  /* CREATE ROOMS END */
+
+  /* JOIN ROOM */
+  setJoinButtons();
+ 
+  function setJoinButtons(){
+    let player1Joins = document.getElementsByClassName('player1Join');
+    let player2Joins = document.getElementsByClassName('player2Join');
+ 
+    [].forEach.call(player1Joins, (each)=>{
+      each.addEventListener('click', ()=>{
+        let roomId = parseInt(each.getAttribute('data-room-id'));
+
+        fetch('/lobby/player1Join/' + roomId, {
+          method:'post',
+          credentials:'include',
+        }).then(()=>{
+          socket.emit('player1-click-join', {
+            roomId: roomId,
+          })
+          window.open('/game/' + roomId);
+        })
+
+      })
+    });
+
+    [].forEach.call(player2Joins, (each)=>{
+      each.addEventListener('click', ()=>{
+        let roomId = parseInt(each.getAttribute('data-room-id'));
+
+        fetch('/lobby/player2Join/' + roomId, {
+          method:'post',
+          credentials:'include',
+        }).then(()=>{
+          socket.emit('player2-click-join', {
+            roomId: roomId,
+          })
+          window.open('/game/' + roomId);
+        })
+
+      })
+    });
+  }
+
+  /* JOIN ROOM END */
+
+
+</script>

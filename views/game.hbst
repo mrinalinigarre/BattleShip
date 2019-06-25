@@ -1,0 +1,256 @@
+<div id="game-room">
+
+  <div class="room-dashboard">
+    <div class="row">
+
+      <div class="col">
+        <h5 id="room-number">Room</h5>
+        <h1>{{gameId}}</h1>
+      </div>
+
+      <div class="col">
+        <h5>Player 1</h5>
+        <h1><span id="player1Name">{{#if player1}} {{player1}} {{else}} Waiting for player... {{/if}}</span></h1>
+      </div>
+
+      <div class="col">
+        <h5>Player 2</h5>
+        <h1><span id="player2Name">{{#if player2}} {{player2}} {{else}} Waiting for player... {{/if}}</span></h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gameboard  -->
+  <div id="main">
+    <div class="row mb-4">
+    <div id="gameboard" class="col-6">
+    </div>
+
+    <div class="col-6">
+  <!--    <table class="table table-dark select-ships mt-3">
+        <tr>
+          <th>
+            <h2>Select Ships</h2></th>
+        </tr>
+        <tr>
+          <td class="destroyer-container">Destroyer<span id="destroyer-ready" class="ml-2" style="font-size:36px;"></span></td>
+          <td><button class="btn btn-primary" id="destroyer-horizontal">Horizontal</button></td>
+          <td><button class="btn btn-primary" id="destroyer-vertical">Vertical</button></td>
+        </tr>
+        <tr>
+          <td class="submarine-container">Submarine<span id="submarine-ready" class="ml-2" style="font-size:36px;"></span></td>
+          <td><button class="btn btn-primary" id="submarine-horizontal">Horizontal</button></td>
+          <td><button class="btn btn-primary" id="submarine-vertical">Vertical</button></td>
+        </tr>
+        <tr>
+          <td class="cruiser-container">Cruiser<span id="cruiser-ready" class="ml-2" style="font-size:36px;"></span></td>
+          <td><button class="btn btn-primary" id="cruiser-horizontal">Horizontal</button></td>
+          <td><button class="btn btn-primary" id="cruiser-vertical">Vertical</button></td>
+        </tr>
+        <tr>
+          <td class="battleship-container">Battleship<span id="battleship-ready" class="ml-2" style="font-size:36px;"></span></td>
+          <td><button class="btn btn-primary" id="battleship-horizontal">Horizontal</button></td>
+          <td><button class="btn btn-primary" id="battleship-vertical">Vertical </button></td>
+        </tr>
+        <tr>
+          <td class="carrier-container">Carrier<span id="carrier-ready" class="ml-2" style="font-size:36px;"></span></td>
+          <td><button class="btn btn-primary" id="carrier-horizontal">Horizontal</button></td>
+          <td><button class="btn btn-primary" id="carrier-vertical">Vertical</button></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><button class="btn btn-danger" id="reset">Reset</button></td>
+          <td><button class="btn btn-success" id="ready">Ready</button></td>
+        </tr>
+      </table> -->
+
+     <div class="select-ships">
+       <div class="container">
+
+       <div class="row select-ships-header">
+         <div class="col">
+           <h2>Select Ships</h2>
+         </div>
+       </div>
+
+       <div class="row select-ship-item" id="destroyer-container">
+
+         <div class="col">
+           <h4 class="ship-name">Destroyer</h4>
+         </div>
+
+         <div class="col">
+           <p class="ship-button" id="destroyer-horizontal">Horizontal</p>
+         </div>
+
+         <div class="col">
+           <p class="ship-button" id="destroyer-vertical">Vertical</p>
+         </div>
+
+       </div>
+      
+       <div class="row select-ship-item" id="cruiser-container">
+         <div class="col">
+           <h4 class="ship-name">Cruiser</h4>
+         </div>
+         <div class="col">
+           <p class="ship-button" id="cruiser-horizontal">Horizontal</p>
+         </div>
+         <div class="col">
+           <p class="ship-button" id="cruiser-vertical">Vertical</p>
+         </div>
+       </div>
+
+       <div class="row select-ship-item" id="submarine-container">
+         <div class="col">
+           <h4 class="ship-name">Submarine</h4>
+         </div>
+         <div class="col">
+           <p class="ship-button" id="submarine-horizontal">Horizontal</p>
+         </div>
+         <div class="col">
+           <p class="ship-button" id="submarine-vertical">Vertical</p>
+         </div>
+       </div>
+
+       <div class="row select-ship-item" id="battleship-container">
+         <div class="col">
+           <h4 class="ship-name" >Battleship</h4>
+         </div>
+         <div class="col">
+           <p class="ship-button" id="battleship-horizontal">Horizontal</p>
+         </div>
+         <div class="col">
+           <p class="ship-button" id="battleship-vertical">Vertical</p>
+         </div>
+       </div>
+
+       <div class="row select-ship-item" id="carrier-container">
+         <div class="col">
+           <h4 class="ship-name">Carrier</h4>
+         </div>
+         <div class="col">
+           <p class="ship-button" id="carrier-horizontal">Horizontal</p>
+         </div>
+         <div class="col">
+           <p class="ship-button" id="carrier-vertical">Vertical</p>
+         </div>
+       </div>
+
+       <div class="row" id="ready-container">
+         <div id="reset-button" class="col">
+           <p>RESET</p>
+         </div>
+         <div id="ready-button" class="col">
+           <p>READY</p>
+         </div>
+       </div>
+
+      </div>
+
+     </div><!-- select ships end -->
+ 
+    </div>
+    </div>
+
+  </div>
+
+  <!-- Chat Box -->
+  <div class="container ">
+    <div class="row justify-content-center chat-box-container">
+      
+      <div id="chat-box" class="col-12 chat-container mb-2">
+      </div>
+
+      <div class="input-group col-12">
+        <input id="message" type="text" class="form-control" placeholder="Get Rekt">
+        <span class="input-group-btn"><button id="message-send" class="btn btn-secondary">Send</button></span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="/js/socket.io.js"></script>
+<script src="/js/game.js"></script>
+<script>
+  let username = '{{session.username}}';
+  let player1;
+  let player2;
+  let gameId = {{gameId}};
+
+  /* SOCKET EVENTS */
+  let socket = io('http://138.197.217.228:3000/game/{{gameId}}')
+
+  socket.on('player-connected', (data) => {
+    let player1NameSpan = document.getElementById('player1Name');
+    let player2NameSpan = document.getElementById('player2Name');
+    player1 = data.player1;
+    player2 = data.player2;
+    let playerNum = 0;
+
+    if(username === player1){
+      playerNum = 1;
+    } else {
+      playerNum = 2;
+    }
+
+
+    if (player1 !== null) {
+      player1NameSpan.innerHTML = player1;
+    }
+
+    if (player2 !== null) {
+      player2NameSpan.innerHTML = player2;
+    }
+
+  })
+
+  let messageSend = document.getElementById('message-send');
+
+  messageSend.addEventListener('click', () => {
+    let inputBox = document.getElementById('message');
+    let message = inputBox.value;
+
+    socket.emit('message-send', {
+      username: username,
+      message: message
+    })
+
+    inputBox.value = '';
+
+  })
+
+  socket.on('message-sent', (data) => {
+    let chatBox = document.getElementById('chat-box');
+    let message = data.message;
+    let username = data.username;
+
+    let chatMessage = document.createElement('p');
+    chatMessage.innerHTML = username + ': ' + message;
+
+    chatBox.appendChild(chatMessage);
+  })
+
+
+  let game = new Game();
+  game.setUsername(username);
+  game.setGameId(gameId);
+  game.setSocket(socket);
+
+  game.initializeGame();
+
+  socket.on('start-game', (data) => {
+
+    let ship_positions;
+    game.setTurn(data.turn);
+
+    if(username === player1){
+      ship_positions = data.player1positions;
+    } else {
+      ship_positions = data.player2positions;
+    }
+
+    game.startGame(ship_positions);
+  })
+</script>

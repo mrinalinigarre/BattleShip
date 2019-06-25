@@ -1,0 +1,425 @@
+/* Imported Fonts */
+/* font-family: 'Oswald', sans-serif; */
+/* Ocean color:#0060fc */
+/* Ship color:#0060fc */
+/* Shot color:#d80000 */ 
+
+body,h1,h2,h3,h4,h5,h6,p,a,ul,li,img,td,th{
+  padding:0;
+  margin:0;
+}
+
+html{
+  height: 100%;
+}
+
+body{
+  font-family: 'Oswald', sans-serif;
+  background: rgba(0,0,0,1);
+  background: -moz-radial-gradient(center, ellipse cover, rgba(0,0,0,1) 0%, rgba(52,58,64,1) 0%, rgba(15,14,14,1) 99%, rgba(15,14,14,1) 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(0,0,0,1)), color-stop(0%, rgba(52,58,64,1)), color-stop(99%, rgba(15,14,14,1)), color-stop(100%, rgba(15,14,14,1)));
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(0,0,0,1) 0%, rgba(52,58,64,1) 0%, rgba(15,14,14,1) 99%, rgba(15,14,14,1) 100%);
+  background: -o-radial-gradient(center, ellipse cover, rgba(0,0,0,1) 0%, rgba(52,58,64,1) 0%, rgba(15,14,14,1) 99%, rgba(15,14,14,1) 100%);
+  background: -ms-radial-gradient(center, ellipse cover, rgba(0,0,0,1) 0%, rgba(52,58,64,1) 0%, rgba(15,14,14,1) 99%, rgba(15,14,14,1) 100%);
+  background: radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(52,58,64,1) 0%, rgba(15,14,14,1) 99%, rgba(15,14,14,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#0f0e0e', GradientType=1 );
+  color:white;
+  min-height:100%;
+}
+
+button{
+  outline:none;
+  cursor:pointer;
+}
+
+a:hover{
+  text-decoration:none;
+}
+
+.main-content{
+  padding-top:15px;
+}
+
+.navbar-brand{
+  font-weight:700;
+}
+
+nav{
+  font-weight:400;
+  margin-bottom:0px;
+}
+
+.form{
+  padding:25px;
+  border: .2rem solid silver;
+}
+
+.bg-black{
+  background-color:black;
+}
+
+.yellow{
+  color:#fce300;
+}
+
+/* Log in page */
+
+.login a{
+  color:#FCE300;
+}
+
+.login button{
+  background-color:#FCE300;
+  color:black;
+  cursor:pointer;
+}
+
+/* Register page */
+
+.register a{
+  color:#fce300;
+}
+
+.register button{
+  background-color:#fce300;
+  color:black;
+  cursor:pointer;
+}
+
+
+/* Home page */
+.homepage{
+  padding:120px 0px 200px 0px;
+}
+
+.logo-container{
+  padding:50px 0px 50px 0px;
+}
+
+.home-button-container{
+  color:white;
+  text-align:center;
+}
+
+.home-button-container a{
+  color:white;
+}
+
+/* Home page end */
+
+/* Lobby */
+
+.lobby-header{  
+  font-size:24px;
+  padding-bottom:12px;
+
+}
+
+#room-list-container{
+  height:400px;
+  overflow-y:scroll;
+  border-top:white 1px solid;
+  border-bottom:white 1px solid;
+  border-left:white 1px solid;
+}
+
+.room-item{
+  font-size:18px;
+  color:white;
+  list-style:none;
+  text-decoration:none;
+  background-color:#3f3f3f;
+  display:block;
+  border-bottom:solid 1px white;
+  border-left:solid 1px white;
+}
+
+.room-item:hover{
+  text-decoration:none;
+  background-color:gray;
+  color:white;
+}
+
+.room-num-container{
+  display:inline-block;
+  border-right:solid 1px white;
+  min-width:112px;
+  padding:20px;
+}
+
+.roomNum{
+  color:#FCE000;
+}
+
+.playerLabel{
+  display:inline-block;
+  padding:20px;
+}
+
+.playerName{
+  color: #FCE000;
+  font-size:1.25rem;
+}
+
+.user-list-container{
+  color:#fce300;
+  font-size:1.25rem;
+  background-color:#3f3f3f;
+  height:400px;
+  overflow-y:scroll;
+  border:solid 2px white;
+  padding-left:15px !important;
+}
+
+
+/* Chat Box */
+
+.chat-box-container{
+}
+
+.chat-container{
+  color:black;
+  background-color:white;
+  height:135px;
+  overflow-y:scroll;
+  border:solid 2px white;
+  border-radius: 0.25rem;
+  margin: 15px 0px;
+}
+
+.btn-chat-send{
+  background-color:#fce300;
+  color:black;
+}
+
+.chat-message{
+  font-size:1.25rem;
+}
+
+.chat-username{
+  color:#0069D9;
+}
+
+/* Game Dashboard */
+.room-dashboard{
+  background-color:#343A40;
+  color:white;
+  margin-bottom:25px;
+}
+
+/* Game Room */
+#game-room{
+  background-color:#343A40;
+  padding:25px 30px;
+}
+
+
+/* Select Ships Container */
+.select-ships{
+  background-color:black;
+  padding:25px 25px;
+  margin-top:25px;
+}
+
+.select-ships li{
+  list-style:none;
+}
+
+.select-ships-header{
+  font-size:2rem;
+}
+
+.select-ships-item{
+  padding-top:15px;
+  padding-bottom:15px;
+}
+
+.ship-name{
+  font-size:1.2rem;
+  display:inline-block;
+  width:90px;
+  height:35px;
+}
+
+.ship-button{
+  background-color:white;
+  color:black;
+  margin-right:8px;
+  transition:ease 0.4s;
+}
+
+.ship-button:hover{
+  opacity:0.5;
+}
+
+#reset-button{
+  background-color:#343A40;
+  color:#fce300;
+  margin-right:0px;
+  margin-left:8px;
+}
+
+#reset-button:hover{
+  opacity:0.5;
+}
+
+#ready-button{
+  background-color:#fce300;
+  color:black;
+  margin-right:0px;
+  margin-left:8px;
+}
+
+#ready-button:hover{
+  opacity:0.5;
+}
+
+/* Game Board */
+
+/* cell size */
+.gameboard td{
+  border: solid 1px black;
+  padding:22px;
+}
+
+.letter-cell{
+  padding-right:5px;
+}
+
+@media (max-width: 1000px){
+  #gameboard td{
+    padding:16px;
+  }
+}
+
+@media (max-width: 770px){
+  #gameboard td{
+    padding:12px;
+  }
+}
+
+.select-ships button{
+  min-width:110px;
+}
+
+.button-container{
+  padding: 8px 12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+#submit-position{
+  background-color: black;
+  color: #fce300;
+  display:block;
+  border:none;
+  width:460px;
+  padding: 15px 0px;
+  transition: ease 0.5s;
+}
+
+#submit-position:hover{
+  opacity:0.3;
+}
+
+
+#waiting-opponent{
+  background-color: #fce300;
+  color: black;
+  display:block;
+  width:460px;
+  padding: 15px 0px;
+  border:none;
+}
+
+#waiting-opponent:hover{
+  opacity:0.3;
+}
+
+#waiting-board{
+}
+
+#waiting-board td{
+  background-color:#343A40;
+  opacity:0.3;
+}
+
+/* Game Notifications */
+#game-notifications{
+  position:absolute;
+  z-index:1;
+  top:15%;
+  left:35%;
+  width:400px;
+  height:600px;
+  opacity:1;
+  pointer-events:none;
+}
+
+#game-notification-item{
+  padding:15px 20px;
+  background-color:black;
+  margin-bottom:15px;
+}
+
+.notification-label{
+  color:white;
+  font-size:2rem;
+}
+
+.notification-message{
+  color:#fce300;
+  font-size:1.25rem;
+}
+
+/* Game over container */
+#game-over{
+  position:absolute;
+  z-index:2;
+  top:18%;
+  left:25%;
+  width:600px;
+  background-color:#343A40;
+  padding:40px 60px;
+  border:#FCE300 solid 3px;
+  display:none;
+}
+
+#game-over-leave{
+  border:white solid 1px;
+  background-color:#343A40;
+  color:white;
+  padding:25px 40px;
+  cursor:pointer;
+  transition:ease 0.3s;
+  margin-top:25px;
+  display:block;
+}
+
+#game-over-leave:hover{
+  background-color:white;
+  color:#343A40
+}
+
+.sinkShip{
+  margin:10px 0px;
+}
+
+/* loader */
+
+.loader {
+    border: 4px solid #343A40; /* Light grey */
+    border-top: 4px solid #fce300; /* Blue */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    display:inline-block;
+    margin-right:5px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
