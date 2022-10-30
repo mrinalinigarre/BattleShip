@@ -1,4 +1,5 @@
 # Battleship
+Click here to play - http://battleship21.herokuapp.com/
 
 ## How to play  
 1. Players place ships onto their boards.
